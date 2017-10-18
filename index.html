@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Minimalist editor for mapbox-gl styles</title>
+
+    <script src='https://api.mapbox.com/mapbox-gl-js/v0.41.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v0.41.0/mapbox-gl.css' rel='stylesheet' />
+    <script src="https://unpkg.com/vue"></script>
+    <style>
+      body { margin:0; padding:0; }
+      #map { position:absolute; top:0; bottom:0; width:100%; }
+      #app { position:absolute; top:20px; right:20px; min-width: 600px; z-index:100; }
+      .error { color: red; text-shadow: 0 0 6px white; }
+      textarea { width: 100%; min-height: 500px;}
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <div id="app">
+      <div class="error" v-if="validateError">{{validateError}}</div>
+      <div class="error" v-if="parseError">{{parseError}}</div>
+      <textarea v-model="styleTxt" placeholder="Write a mapbox-gl style here"></textarea>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
