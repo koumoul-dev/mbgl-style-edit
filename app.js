@@ -3,7 +3,8 @@ var app = new Vue({
   data: {
     styleTxt: '',
     parseError: null,
-    validateError: null
+    validateError: null,
+    zoom: null
   },
   mounted: function() {
     this.map = new mapboxgl.Map({
@@ -21,6 +22,11 @@ var app = new Vue({
         console.log(e)
       }
     })
+    this.map.on('zoomend', (z) => {
+      this.zoom = this.map.getZoom()
+    })
+    this.zoom = this.map.getZoom()
+
     this.styleTxt = localStorage.getItem('lastStyle') || '';
   },
   watch: {
